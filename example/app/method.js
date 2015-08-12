@@ -6,12 +6,12 @@ let fs = require('fs');
 let Promise = require('bluebird');
 
 module .exports = {
-    get:function*(id){
+    get:function*(){
         let html = yield Promise.fromNode(function(cb){
-            fs.readFile(id,cb);
+            fs.readFile('./example/views/index.html',cb);
         });
         this.res.writeHeader(200,{'Content-Type':'text/html'});
-        this.res.end(html);
+        this.res.body = html;
     },
     post:function*(){
 

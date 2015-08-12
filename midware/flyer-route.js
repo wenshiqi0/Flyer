@@ -38,7 +38,6 @@ class Flyer_Route extends Flyer {
             }
         }else{
             this.done = true;
-            this.res.statusCode = 404;
         }
     }
 }

@@ -9,12 +9,12 @@ let Route = require('./midware/flyer-route');
 let Logger = require('./midware/flyer-logger');
 let Parse  = require('./midware/flyer-parse');
 let Error = require('./midware/flyer-error');
-let method = require('./test/method');
+let method = require('./example/app/method');
 
 app.configure(new Error())
     .configure(new Parse())
     .configure(new Logger())
-    .launch(new Route('/index:id',method));
+    .launch(new Route('/index',method));
 
 app.listen(3000,'localhost');
 
