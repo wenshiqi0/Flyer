@@ -5,24 +5,16 @@
 let fs = require('fs');
 let app = require('./lib/index');
 let Flyer = require('./lib/Flyer');
-let Promise = require('bluebird');
-let Route =require('./midware/flyer-route');
+let Route = require('./midware/flyer-route');
+let Logger = require('./midware/flyer-logger');
+let Parse  = require('./midware/flyer-parse');
+let Error = require('./midware/flyer-error');
+let method = require('./test/method');
 
-app.launch(new Route('/',function*(){
-    let html = yield Promise.fromNode(function(cb){
-        fs.readFile('index.html',cb)
-    });
-    this.res.writeHeader(200,{'Content-Type':'text/html'});
-    this.res.end(html);
-}));
-
-app.launch(new Route('/new',function*(){
-    let html = yield Promise.fromNode(function(cb){
-        fs.readFile('new.html',cb)
-    });
-    this.res.writeHeader(200,{'Content-Type':'text/html'});
-    this.res.end(html);
-}));
+app.configure(new Error())
+    .configure(new Parse())
+    .configure(new Logger())
+    .launch(new Route('/index:id',method));
 
 app.listen(3000,'localhost');
 
