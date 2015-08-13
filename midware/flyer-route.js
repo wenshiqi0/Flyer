@@ -6,35 +6,16 @@ let Flyer = require('./../lib/flyer');
 let url = require('url');
 
 class Flyer_Route extends Flyer {
-    constructor(url, func) {
+    constructor(url,mtype,mfunc) {
         super();
-        this.arg = {'url':url,'func':func};
+        this.arg = {'url':url,'mtype':mtype,'mfunc':mfunc};
     }
 
     *do(){
         let id = match(this.req.url);
         if(this.req.url.replace(id,"") == this.url.replace(match(this.url),"")){
-            switch (this.req.method.toLowerCase()){
-                case 'get':
-                    yield this.func.get.call(this,id);
-                    break;
-                case 'post':
-                    yield this.func.post.call(this,id);
-                    break;
-                case 'put':
-                    yield this.func.put.call(this,id);
-                    break;
-                case 'delete':
-                    yield this.func.delete.call(this,id);
-                    break;
-                case 'patch':
-                    yield this.func.patch.call(this,id);
-                    break;
-                case 'header':
-                    yield this.func.header.call(this,id);
-                    break;
-                default :
-                    yield this.func.get.call(this,id);
+            if(this.mtype.toUpperCase() == this.req.method){
+                yield this.mfunc(id);
             }
         }else{
             this.done = true;
