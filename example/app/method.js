@@ -8,7 +8,7 @@ let Promise = require('bluebird');
 module .exports = {
     get:function*(){
         let html = yield Promise.fromNode(function(cb){
-            fs.readFile('./example/views/index.html',cb);
+            fs.readFile('./example/static/index.html',cb);
         });
         this.res.writeHeader(200,{'Content-Type':'text/html'});
         this.res.body = html;
