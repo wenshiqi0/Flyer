@@ -10,16 +10,19 @@ class Flyer_Logger extends Flyer{
     }
 
     *do(){
+        let start = Date.now();
+        function onFinish(){
+            let come_out = '<-- '+this.method+' '+this.statusCode;
+            let finish = Date.now();
+            let ms = finish-start;
+            console.log(come_out+' '+ms+'ms');
+            this.removeListener('finish',onFinish);
+        }
+
         try{
-            let come_in = this.req.url + " " + this.req.method +'-->';
-            let start = Date.now();
+            let come_in = '--> '+this.req.method +" "+ this.req.url;
             console.log(come_in);
-            this.res.on('finish',function(){
-                let come_out = '<--'+this.method+' '+this.statusCode;
-                let finish = Date.now();
-                let ms = finish-start;
-                console.log(come_out+' '+ms+'ms');
-            });
+            this.res.once('finish',onFinish);
         }catch(e){
             console.error(e);
             throw e;

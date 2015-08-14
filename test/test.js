@@ -36,9 +36,22 @@ describe('http',function(){
 describe('http',function(){
     describe('#static text/javascript',function(){
         it('should return static javascript',function(){
-            request(url+'js/jquery-2.1.4.js',function(err){
+            request(url+'/js/jquery-2.1.4.js',function(err){
                 if(err)throw err;
                 res.should.status(200).js;
+                res.body.should.not.empty;
+                done();
+            })
+        })
+    })
+})
+
+describe('http',function(){
+    describe('#route not be found',function(){
+        it('should return 404 and not found html',function(){
+            request(url+'/notfound.html',function(err){
+                if(err)throw err;
+                res.should.status(404);
                 res.body.should.not.empty;
                 done();
             })
