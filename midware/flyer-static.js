@@ -37,12 +37,12 @@ class Flyer_Static extends Flyer{
 }
 
 function cutTail(file){
-    let reg = /^[a-zA-Z0-9\.\/\\\-\_\:]*\.([a-zA-Z0-9]*)$/i;
-    let re = reg.exec(file);
-    if(re == undefined){
-        throw 'this is not a file';
+    let reg = /^[a-zA-Z0-9\.\/\\\-\_\:]*\.([a-zA-Z0-9]*)$/;
+    let res = reg.exec(file);
+    if(res == undefined){
+        return undefined;
     }else{
-        return re[1];
+        return res[1];
     }
 }
 

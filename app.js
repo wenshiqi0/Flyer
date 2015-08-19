@@ -17,7 +17,6 @@ app.configure(new Error())
     .configure(new Parse())
     .configure(new Source(path.join(__dirname,'/example/static')))
     .launch(new Route('/do:id','get',method.get))
-    .launch(new Route('/do','get',method.get))
     .listen(3000,'localhost')
 
 

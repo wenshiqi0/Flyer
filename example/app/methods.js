@@ -7,8 +7,8 @@ let fs = require('fs');
 module .exports = {
     'get':function*(id){
         try{
-            this.res.writeHeader(200,{'Content-Type':'text/plain'});
-            this.res.body = id+':success';
+            this.res.writeHeader(200,{'Content-Type':'application/json'});
+            this.res.body = JSON.stringify({'username':id});
         }catch(e){
             throw e;
         }

@@ -26,7 +26,11 @@ class Flyer_Route extends Flyer {
 function match(url){
     var reg = /^[a-zA-Z0-9\/]*:?([a-zA-Z0-9\.]*)?$/i
     var res = reg.exec(url);
-    return res[1];
+    if(res == undefined){
+        return undefined;
+    }else{
+        return res[1];
+    }
 }
 
 module.exports = Flyer_Route;

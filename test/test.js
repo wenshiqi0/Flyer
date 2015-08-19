@@ -59,4 +59,15 @@ describe('http',function(){
     })
 })
 
-
+describe('http',function(){
+    describe('#restful method to get json',function(){
+        it('should return json',function(){
+            request(url+'/do:wen',function(err){
+                if(err)throw err;
+                res.should.status(200).json;
+                res.body.should.not.empty;
+                done();
+            })
+        })
+    })
+})
