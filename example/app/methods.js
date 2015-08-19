@@ -3,7 +3,6 @@
  */
 'use strict'
 let fs = require('fs');
-let Promise = require('bluebird');
 
 module .exports = {
     'get':function*(id){

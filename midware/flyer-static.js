@@ -4,7 +4,6 @@
 'use strict'
 let fs = require('fs');
 let Flyer = require('./../lib/flyer')
-let Promise = require('bluebird');
 let path = require('path');
 let mime = require('./mime');
 

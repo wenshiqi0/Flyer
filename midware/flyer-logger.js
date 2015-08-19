@@ -18,7 +18,6 @@ class Flyer_Logger extends Flyer{
             console.log(come_out+' '+ms+'ms');
             this.removeListener('finish',onFinish);
         }
-
         try{
             let come_in = '--> '+this.req.method +" "+ this.req.url;
             console.log(come_in);
